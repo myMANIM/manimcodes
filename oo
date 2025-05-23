@@ -1,9 +1,31 @@
-%%manim -qm Mannager
 from manim import *
 class Mannager(Scene):
     def construct(self):
-        tex1 = Text("Definition",font_size = 75).set_color_by_gradient(BLUE, RED)
-        tex2 = Text("by Felix",font_size = 30)
+        tex1 = Text(r"海市蜃楼",font="SimHei",font_size=75).set_color_by_gradient(BLUE,RED)
+        tex2 = Text(r"made in China",font_size=30)
         group1 = VGroup(tex1,tex2).arrange(DOWN*1.5)
         self.play(Write(group1))
+        self.wait()
+        self.play(FadeOut(group1))
+
+        tex1 = Text(r"清朝老图片",font="SimHei",font_size=10).shift(UP*3.5)
+        pic1 = ImageMobject("./images/1(hai).jpg")
+        self.play(FadeIn(tex1,pic1))
+        self.wait(2)
+        self.play(FadeOut(tex1,pic1))
+
+        tex1 = Text(r"1.0 折射",font="SimHei",color=ORANGE)
+        self.play(FadeIn(tex1))
+        self.play(tex1.animate.shift(UP*3.3+LEFT*5.3))
+
+        tex2 = Text(r"1.1 抽象的定义",font="SimHei",color=ORANGE).shift(UP*3.3+LEFT*5)
+        self.play(ReplacementTransform(tex1,tex2))
+
+        tex1 = Text("光从一种透明介质斜射入另一种透明介质时",
+                    "传播方向一般会发生变化",
+                    "这种现象叫光的折射",
+                    t2c={"透明":GREEN,"斜射":RED,"一般":GREEN,"折射":RED})
+
+        self.play(Write(tex1))
+
         self.wait()
